@@ -16,16 +16,28 @@ class Room:
   def add_exit(self, direction, room):
     self.exits[direction] = room
 
-  def render_player_perspective(self, width):
+  def render_room(self, width=50):
     output = '[ ' + self.name + ' ]\n'
     output += textwrap.fill(self.description, width) + '\n\n'
-    dirs = ", ".join([key.upper() for key in self.exits])
+    return output
+
+    # dirs = ", ".join([key.upper() for key in self.exits])
+    # if len(self.exits) > 0:
+    #   output += f"You can move in the [ " + dirs + (" ] directions" if len(self.exits) > 1 else " ] direction")
+    # else:
+    #   output += f"There are no obvious exits in this room"
+    # return output
+
+  def render_exits(self, width=50):
+    output = ""
+    dirs = ", ".join([k.upper() for k in self.exits])
     if len(self.exits) > 0:
       output += f"You can move in the [ " + dirs + (" ] directions" if len(self.exits) > 1 else " ] direction")
     else:
       output += f"There are no obvious exits in this room"
+      
+    output = textwrap.fill(output, width)
     return output
-
 
 
 class Direction:

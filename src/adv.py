@@ -42,12 +42,6 @@ def render_help():
 def render_map(size):
     pass
 
-def render_room(player):
-    print(player.render_environment())
-
-def render_inventory():
-    pass
-
 def render_prompt():
     pass
 
@@ -61,7 +55,8 @@ def main():
 
     print(f"Welcome to the Game, adventurer {player}!\n\n")
     input(f"Press any key to continue...")
-    render_room(player)
+
+    print(player.render_environment())
 
     # main game loop
     while True:
@@ -72,10 +67,10 @@ def main():
             render_help()
             
         elif choice in movement_commands:
-            print(player.move(choice))
             #perform a move
+            print(player.move(choice))
             #render the new room
-            render_room(player)
+            print(player.render_environment())
 
         elif choice == 'g':
             #perform get item
@@ -90,7 +85,7 @@ def main():
             pass
 
         elif choice == 'l':
-            render_room(player)
+            print(player.render_environment())
 
         elif choice == 'q':
             # exit the game
@@ -112,3 +107,4 @@ def main():
 # actions 
 
 main()
+

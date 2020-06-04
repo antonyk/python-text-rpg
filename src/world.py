@@ -57,4 +57,4 @@ rooms['treasure'].add_exit('s', rooms['narrow'])
 gameworld = World(rooms)
 gameworld.spawn_room = gameworld.rooms['outside']
 
-print(rooms['foyer'].render_player_perspective(50))
+#print(rooms['foyer'].render_player_perspective())

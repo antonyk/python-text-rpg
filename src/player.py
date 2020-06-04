@@ -5,6 +5,7 @@ class Player:
   def __init__(self, name, room):
     self.name = name
     self.room = room
+    self.can_see = True
 
 # sort of like a teleport; transports a player to a specific room  
   def move_to(self, room):
@@ -29,7 +30,21 @@ class Player:
 
   def render_environment(self):
     # render the world from the player's perspective
-    self.room.render_player_perspective(50)
+    output = ""
+    # print room name, desc
+    output += self.room.render_room()
+    # print exits (if can see)
+    if self.can_see:
+      output += self.room.render_exits()
+    else:
+      output += f"You are unable to see this room's exits"
+    # print objects
+    # print chars
+    return output
+
+  def print_environment(self):
+
+    pass
 
   def render_inventory(self):
     pass
