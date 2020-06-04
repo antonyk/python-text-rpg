@@ -1,2 +1,56 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
+import textwrap
+
+class Room:
+  def __init__(self, name, description):
+    self.name = name
+    self.description = description
+    self.exits = {}
+    self.characters = {}
+    self.objects = {}
+
+  def __str__(self):
+    return self.name
+
+  def add_exit(self, direction, room):
+    self.exits[direction] = room
+
+  def render_room(self, width=50):
+    output = '[ ' + self.name + ' ]\n'
+    output += textwrap.fill(self.description, width) + '\n\n'
+    return output
+
+    # dirs = ", ".join([key.upper() for key in self.exits])
+    # if len(self.exits) > 0:
+    #   output += f"You can move in the [ " + dirs + (" ] directions" if len(self.exits) > 1 else " ] direction")
+    # else:
+    #   output += f"There are no obvious exits in this room"
+    # return output
+
+  def render_exits(self, width=50):
+    output = ""
+    dirs = ", ".join([k.upper() for k in self.exits])
+    if len(self.exits) > 0:
+      output += f"You can move in the [ " + dirs + (" ] directions" if len(self.exits) > 1 else " ] direction")
+    else:
+      output += f"There are no obvious exits in this room"
+      
+    output = textwrap.fill(output, width)
+    return output
+
+
+class Direction:
+  def __init__(self, direction):
+    self.direction = direction
+
+
+
+directionScheme = {
+  'north': ['n', 'north'],
+  'east': ['e', 'east'],
+  'south': ['s', 'south'],
+  'west': ['w', 'west']
+}
+
+
