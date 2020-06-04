@@ -1,54 +1,6 @@
-from room import Room
-
-# Declare all the rooms
-
-rooms = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
-}
-
-
-
-for i in rooms:
-    print(str(i))
-
-# Link rooms together
-
-rooms['outside'].add_exit('n', rooms['foyer'])
-
-rooms['foyer'].add_exit('s', rooms['outside'])
-rooms['foyer'].add_exit('n', rooms['overlook'])
-rooms['foyer'].add_exit('e', rooms['narrow'])
-
-rooms['overlook'].add_exit('s', rooms['foyer'])
-
-rooms['narrow'].add_exit('w', rooms['foyer'])
-rooms['narrow'].add_exit('n', rooms['treasure'])
-
-rooms['treasure'].add_exit('s', rooms['narrow'])
-
-# room['outside'].n_to = room['foyer']
-# room['foyer'].s_to = room['outside']
-# room['foyer'].n_to = room['overlook']
-# room['foyer'].e_to = room['narrow']
-# room['overlook'].s_to = room['foyer']
-# room['narrow'].w_to = room['foyer']
-# room['narrow'].n_to = room['treasure']
-# room['treasure'].s_to = room['narrow']
+from world import gameworld
+from player import Player
+import textwrap
 
 #
 # Main
@@ -67,18 +19,96 @@ rooms['treasure'].add_exit('s', rooms['narrow'])
 #
 # If the user enters "q", quit the game.
 
-action = input(f"Which way do you want to move?")
 
-def draw_map():
-    
+def draw_room(player):
+    pass
+    # display room name, description
+    # display characters in room
+    # display objects in room
+    # display available exits
+    # display available actions?
+
+movement_commands = {
+    'n': [],
+    'e': [],
+    's': [],
+    'w': [],
+}
+
+def render_help():
+    # clear screen
+    print(f"Help menu")
+
+def render_map(size):
+    pass
+
+def render_room(player):
+    print(player.render_environment())
+
+def render_inventory():
+    pass
+
+def render_prompt():
+    pass
 
 def main():
+    # create world
 
+    prompt = ""
+    # get player name and create players
+    p_name = input(f"Please enter you character's name:")
+    player = Player(p_name, gameworld.spawn_room)
+
+    print(f"Welcome to the Game, adventurer {player}!\n\n")
+    input(f"Press any key to continue...")
+    render_room(player)
+
+    # main game loop
     while True:
 
-        # draw current map
-        # display prompt
+        choice = input(f"Enter an action or movement command, 'h' for help or 'q' to quit)\n> ") # direction to move, 'q' to quit or 'a' to attack")
+
+        if choice == 'h':
+            render_help()
+            
+        elif choice in movement_commands:
+            print(player.move(choice))
+            #perform a move
+            #render the new room
+            render_room(player)
+
+        elif choice == 'g':
+            #perform get item
+            pass
+
+        elif choice == 'a':
+            #perform attack
+            pass
+
+        elif choice == 'm':
+            #draw current map
+            pass
+
+        elif choice == 'l':
+            render_room(player)
+
+        elif choice == 'q':
+            # exit the game
+            print("Thank you for playing!")
+            break
+
+
         # read prompt
         # perform action
         # redraw and repeat
 
+
+#action = input(f"Which way do you want to move?")
+
+
+
+# actions can be on the room, an object, a player
+# actions can be "universal"
+# actions 
+
+main()
