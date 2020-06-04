@@ -24,6 +24,10 @@ to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
+
+    'guardian': Room("Guardian Room", """You come upon a massive creature, clad
+    in full plate armor, which seems to be blockin the exit to the north."""),
+
 }
 
 
@@ -40,9 +44,12 @@ rooms['foyer'].add_exit('e', rooms['narrow'])
 rooms['overlook'].add_exit('s', rooms['foyer'])
 
 rooms['narrow'].add_exit('w', rooms['foyer'])
-rooms['narrow'].add_exit('n', rooms['treasure'])
+rooms['narrow'].add_exit('n', rooms['guardian'])
 
-rooms['treasure'].add_exit('s', rooms['narrow'])
+rooms['guardian'].add_exit('s', rooms['narrow'])
+rooms['guardian'].add_exit('n', rooms['treasure'])
+
+rooms['treasure'].add_exit('s', rooms['guardian'])
 
 # room['outside'].n_to = room['foyer']
 # room['foyer'].s_to = room['outside']
