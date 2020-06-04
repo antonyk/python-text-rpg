@@ -6,6 +6,11 @@ class Player:
     self.name = name
     self.room = room
     self.can_see = True
+    self.vision = 5
+#    self.body
+
+  def __str__(self):
+    return self.name
 
 # sort of like a teleport; transports a player to a specific room  
   def move_to(self, room):

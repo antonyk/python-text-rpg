@@ -67,24 +67,25 @@ def main():
             render_help()
             
         elif choice in movement_commands:
-            #perform a move
+            # perform a move
             print(player.move(choice))
             #render the new room
             print(player.render_environment())
 
         elif choice == 'g':
-            #perform get item
+            # perform 'get' item
             pass
 
         elif choice == 'a':
-            #perform attack
+            # perform 'attack'
             pass
 
         elif choice == 'm':
-            #draw current map
+            # view current map
             pass
 
         elif choice == 'l':
+            # perform a 'look' in the current room
             print(player.render_environment())
 
         elif choice == 'q':
