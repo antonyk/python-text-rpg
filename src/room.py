@@ -9,7 +9,7 @@ class Room:
     self.description = description
     self.exits = {}
     self.characters = {}
-    self.objects = {}
+    self.objects = []
     self.visibility = 5
 
   def __str__(self):
@@ -19,11 +19,19 @@ class Room:
     self.exits[direction] = room
 
   def add_object(self, obj):
-    self.objects[obj.name] = obj
+    self.objects.append(obj)
+
+  def remove_object(self, obj):
+    self.objects.remove(obj)
 
   def render_room(self, width=50):
     output = colored('[ ' + self.name + ' ]', 'white')+'\n'
     output += colored(textwrap.fill(self.description, width), 'magenta') + '\n\n'
+    if len(self.objects) > 0:
+      output += colored('You see:', 'cyan') + '\n'
+      output += '\n'.join([colored(item.name, 'green') for item in self.objects]) + '\n\n'
+    else:
+      output += colored("There is nothing in this room!", 'blue') + '\n'
     return output
 
     # dirs = ", ".join([key.upper() for key in self.exits])

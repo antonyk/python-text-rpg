@@ -1,4 +1,5 @@
 from room import Room
+from item import Item
 
 # Declare all the rooms
 
@@ -60,6 +61,12 @@ rooms['treasure'].add_exit('s', rooms['guardian'])
 # room['narrow'].n_to = room['treasure']
 # room['treasure'].s_to = room['narrow']
 
+
+# Add items to rooms
+rooms['outside'].add_object(Item('torch', 'a basic torch to light the way'))
+rooms['outside'].add_object(Item('training sword', 'a dull training sword made of wood'))
+
+rooms['treasure'].add_object(Item('dragon egg', 'a precious dragon egg which may hatch a dragon pet'))
 
 gameworld = World(rooms)
 gameworld.spawn_room = gameworld.rooms['outside']

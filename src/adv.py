@@ -1,6 +1,8 @@
+import textwrap
+from termcolor import colored
+
 from world import gameworld
 from player import Player
-import textwrap
 
 #
 # Main
@@ -72,9 +74,17 @@ def main():
             #render the new room
             print(player.render_environment())
 
-        elif choice == 'g':
-            # perform 'get' item
-            pass
+        elif choice[0] == 'g':
+            parts = choice.split(' ', 1)
+            found = False
+            for item in player.room.objects:
+                if item.name == parts[1]:
+                    player.pickup_item(item)
+                    print(colored(f"Picked up a {parts[1]} item", 'red'))
+                    found = True
+                    break
+            if not found:
+                print(colored(f"No {parts[1]} item found", 'red'))
 
         elif choice == 'a':
             # perform 'attack'
@@ -87,6 +97,9 @@ def main():
         elif choice == 'l':
             # perform a 'look' in the current room
             print(player.render_environment())
+
+        elif choice == 'i':
+            print(player.render_inventory())
 
         elif choice == 'q':
             # exit the game
