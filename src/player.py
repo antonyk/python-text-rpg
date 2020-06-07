@@ -23,9 +23,9 @@ class Player:
   def move(self, direction):
     if direction in self.room.exits:
       self.room = self.room.exits[direction]
-      return f"You moved {direction.upper()} to the {self.room.name}"
+      return colored(f"You moved {direction.upper()} to the {self.room.name}", 'yellow')
     else:
-      return f"There is no exit in the {direction.upper()} direction!"
+      return colored(f"There is no exit in the {direction.upper()} direction!", 'yellow')
 
   def pickup_item(self, item):
     self.inventory.append(item)

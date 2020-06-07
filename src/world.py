@@ -1,3 +1,4 @@
+import random
 from room import Room
 from item import Item
 
@@ -7,7 +8,7 @@ class World:
   def __init__(self, rooms = {}):
     self.rooms = rooms
 
-  
+
 rooms = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -30,6 +31,37 @@ earlier adventurers. The only exit is to the south."""),
     in full plate armor, which seems to be blockin the exit to the north."""),
 
 }
+
+content = [
+    (
+        "Outside Cave Entrance",
+        "North of you, the cave mount beckons"
+    ),
+    (
+        "Foyer",
+        """Dim light filters in from the south. Dusty passages run north and east."""
+    ),
+    (
+        "Grand Overlook",
+        """A steep cliff appears before you, falling into the darkness. Ahead to the 
+        north, a light flickers in the distance, but there is no way across the chasm."""
+    ),
+    (
+        "Narrow Passage", 
+        """The narrow passage bends here from west to north. The smell of gold permeates the air."""
+    ),
+    (
+        "Treasure Chamber", 
+        """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied 
+        by earlier adventurers. The only exit is to the south."""
+    ),
+    (
+        "Guardian Room", 
+        """You come upon a massive creature, clad in full plate armor, which seems to be blockin the 
+        exit to the north."""
+    ),
+]
+
 
 
 # for i in rooms:
@@ -72,3 +104,24 @@ gameworld = World(rooms)
 gameworld.spawn_room = gameworld.rooms['outside']
 
 #print(rooms['foyer'].render_player_perspective())
+
+# generate a random world
+
+def genworld():
+
+    choices = len(content)
+    size = 100
+
+    for i in range(1, size):
+        rand = random.Random()
+        fromCont = rand.choice(content)
+
+        newRoom = Room(fromRoom.name, fromRoom.description)
+        exitsCnt = range
+        # newRoom.
+        # world[str(i)] = 
+
+    world = {
+
+    }
+
