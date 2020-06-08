@@ -1,6 +1,9 @@
+import os
+import textwrap
+from termcolor import colored
+
 from world import gameworld
 from player import Player
-import textwrap
 
 #
 # Main
@@ -45,6 +48,9 @@ def render_map(size):
 def render_prompt():
     pass
 
+def clear_screen():
+    _ = os.system('cls') if os.name == 'nt' else os.system('clear')
+
 def main():
     # create world
 
@@ -56,36 +62,67 @@ def main():
     print(f"Welcome to the Game, adventurer {player}!\n\n")
     input(f"Press any key to continue...")
 
+    clear_screen()
     print(player.render_environment())
-
     # main game loop
     while True:
-
         choice = input(f"Enter an action or movement command, 'h' for help or 'q' to quit)\n> ") # direction to move, 'q' to quit or 'a' to attack")
 
-        if choice == 'h':
+        if len(choice) < 1:
+            print(colored(f"Please enter a valid input", 'red'))
+
+        elif choice == 'h':
+            clear_screen()
             render_help()
             
         elif choice in movement_commands:
-            #perform a move
+            clear_screen()
+            # perform a move
             print(player.move(choice))
             #render the new room
             print(player.render_environment())
 
-        elif choice == 'g':
-            #perform get item
-            pass
+        elif choice[0] == 'g':
+            parts = choice.split(' ', 1)
+            found = False
+            for item in player.room.objects:
+                if item.name == parts[1]:
+                    player.pickup_item(item)
+                    print(colored(f"Picked up the {parts[1]}", 'yellow'))
+                    found = True
+                    break
+            if not found:
+                print(colored(f"No {parts[1]} item found", 'red'))
+            # print(player.render_environment())
+
+        elif choice[0] == 'd':
+            parts = choice.split(' ', 1)
+            found = False
+            for item in player.inventory:
+                if item.name == parts[1]:
+                    player.drop_item(item)
+                    print(colored(f"Dropped a {parts[1]}", 'yellow'))
+                    found = True
+                    break
+            if not found:
+                print(colored(f"No {parts[1]} item found", 'red'))
+            # print(player.render_environment())
 
         elif choice == 'a':
-            #perform attack
+            # perform 'attack'
             pass
 
         elif choice == 'm':
-            #draw current map
+            # view current map
             pass
 
         elif choice == 'l':
+            clear_screen()
+            # perform a 'look' in the current room
             print(player.render_environment())
+
+        elif choice == 'i':
+            print(player.render_inventory())
 
         elif choice == 'q':
             # exit the game

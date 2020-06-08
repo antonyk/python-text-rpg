@@ -1,11 +1,19 @@
-# Write a class to hold player information, e.g. what room they are in
-# currently.
+from termcolor import colored
 
 class Player:
   def __init__(self, name, room):
     self.name = name
     self.room = room
     self.can_see = True
+    self.vision = 5
+    self.inventory = []
+    # self.actions = {
+    #   'g', 
+    # }
+#    self.body
+
+  def __str__(self):
+    return self.name
 
 # sort of like a teleport; transports a player to a specific room  
   def move_to(self, room):
@@ -15,15 +23,17 @@ class Player:
   def move(self, direction):
     if direction in self.room.exits:
       self.room = self.room.exits[direction]
-      return f"You moved {direction} to the {self.room.name}"
+      return colored(f"You moved {direction.upper()} to the {self.room.name}", 'yellow')
     else:
-      return f"There is no exit in the {direction} direction!"
+      return colored(f"There is no exit in the {direction.upper()} direction!", 'yellow')
 
   def pickup_item(self, item):
-    pass
+    self.inventory.append(item)
+    self.room.remove_object(item)
 
   def drop_item(self, item):
-    pass
+    self.room.add_object(item)
+    self.inventory.remove(item)
 
   def attack_target(self, target):
     pass
@@ -47,7 +57,11 @@ class Player:
     pass
 
   def render_inventory(self):
-    pass
+    output = colored('My Inventory:', 'cyan') + '\n'
+    if len(self.inventory) > 0:
+      output += '\n'.join([colored(item.name, 'green') for item in self.inventory]) + '\n\n'
+    else:
+      output += colored("You are not carrying anything!", 'red') + '\n'
 
+    return output
 
-# 
