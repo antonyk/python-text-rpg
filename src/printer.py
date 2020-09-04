@@ -4,38 +4,40 @@ from termcolor import colored
 # terminal printing
 
 # 1. define message categories
-# - pass some text, pass category, 
+# - pass some text, pass category,
 
 
 class PrintCategory(NamedTuple):
-  name: str
-  color: str
-  bgcolor: str
-  attr: str
+    name: str
+    color: str
+    bgcolor: str
+    attr: str
+
 
 class TPrint:
 
-  def send(message, category):
-    print(colored(message, category.color, ))
-    pass
+    def send(message, category):
+        print(colored(message, category.color, ))
+        pass
 
 
 class PrintCategories:
-  error = PrintCategory(name='error', color='red', bgcolor='white', attr='')
-  roomdesc = PrintCategory(name='roomdesc', color='red', bgcolor='white', attr='')
-  infohead = PrintCategory(name='infohead', color='red', bgcolor='white', attr='')
-  info = PrintCategory(name='info', color='red', bgcolor='white', attr='')
-
+    error = PrintCategory(name='error', color='red', bgcolor='white', attr='')
+    roomdesc = PrintCategory(
+        name='roomdesc', color='red', bgcolor='white', attr='')
+    infohead = PrintCategory(
+        name='infohead', color='red', bgcolor='white', attr='')
+    info = PrintCategory(name='info', color='red', bgcolor='white', attr='')
 
 
 pc = PrintCategories()
 
 
 cats = {
-  "error": {
-    color: "red",
-    bgcolor: "white",
-  }  
+    "error": {
+        color: "red",
+        bgcolor: "white",
+    }
 }
 
 cat = cats['error']
