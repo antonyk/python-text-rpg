@@ -2,8 +2,10 @@ import os
 import textwrap
 from termcolor import colored
 
-from world import gameworld
+from world import World
 from player import Player
+from content import rooms
+
 
 #
 # Main
@@ -66,6 +68,7 @@ def clear_screen():
 
 def main():
     # create world
+    gameworld = World(rooms=rooms, default_room='outside')
 
     prompt = ""
     # get player name and create players
