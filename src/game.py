@@ -31,6 +31,7 @@ def draw_room(player):
     # display available exits
     # display available actions?
 
+
 movement_commands = {
     'n': [],
     'e': [],
@@ -38,18 +39,30 @@ movement_commands = {
     'w': [],
 }
 
+commands = {
+    'd': {
+        'description': 'drop',
+        'command': '...'  # lambda
+    }  # convert this into a class and have the values be instances of the command class
+}
+
+
 def render_help():
     # clear screen
     print(f"Help menu")
 
+
 def render_map(size):
     pass
+
 
 def render_prompt():
     pass
 
+
 def clear_screen():
     _ = os.system('cls') if os.name == 'nt' else os.system('clear')
+
 
 def main():
     # create world
@@ -66,7 +79,9 @@ def main():
     print(player.render_environment())
     # main game loop
     while True:
-        choice = input(f"Enter an action or movement command, 'h' for help or 'q' to quit)\n> ") # direction to move, 'q' to quit or 'a' to attack")
+        # direction to move, 'q' to quit or 'a' to attack")
+        choice = input(
+            f"Enter an action or movement command, 'h' for help or 'q' to quit)\n> ")
 
         if len(choice) < 1:
             print(colored(f"Please enter a valid input", 'red'))
@@ -74,12 +89,12 @@ def main():
         elif choice == 'h':
             clear_screen()
             render_help()
-            
+
         elif choice in movement_commands:
             clear_screen()
             # perform a move
             print(player.move(choice))
-            #render the new room
+            # render the new room
             print(player.render_environment())
 
         elif choice[0] == 'g':
@@ -129,7 +144,6 @@ def main():
             print("Thank you for playing!")
             break
 
-
         # read prompt
         # perform action
         # redraw and repeat
@@ -138,10 +152,9 @@ def main():
 #action = input(f"Which way do you want to move?")
 
 
-
 # actions can be on the room, an object, a player
 # actions can be "universal"
-# actions 
+# actions
+
 
 main()
-
