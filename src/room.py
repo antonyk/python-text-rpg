@@ -4,6 +4,10 @@ from item import Item
 from item import Equipment
 
 
+class Exit:
+    pass
+
+
 class Room:
     def __init__(self, uid, name, description):
         self.uid = uid
