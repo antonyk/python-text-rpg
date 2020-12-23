@@ -13,11 +13,11 @@ class BodyPart:
         self.canWield = canWield
 
 
-def movezeroes(nums):
+# def movezeroes(nums):
 
-    for i in range(len(nums)):
-        if nums[i] == 0:
+#     for i in range(len(nums)):
+#         if nums[i] == 0:
 
-            zeroes += 1
+#             zeroes += 1
 
-    for i, num in enumerate(nums):
+#     for i, num in enumerate(nums):
