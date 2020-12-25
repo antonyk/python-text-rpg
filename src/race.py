@@ -22,6 +22,8 @@ def init_races():
         'lfoot': BodyPart('lfoot', 'limb', 5, True, False),
     }
 
+    print(bodyParts)
+
     # humanoid = Body("humanoid", parts)
     # human = Race()
 
