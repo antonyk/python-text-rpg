@@ -1,5 +1,9 @@
 # All objects will inherit from "item"
 
+# IS vs HAS --
+# use IS (inheritance) as a way to easily configure; 
+
+
 
 class Item:
     def __init__(self, name, description):
