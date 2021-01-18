@@ -1,4 +1,6 @@
 from termcolor import colored
+from living import Living
+from utils import print_error
 
 
 class Player:
@@ -22,11 +24,15 @@ class Player:
 
 # move in a particular direction
     def move(self, direction):
+        result = {}
         if direction in self.room.exits:
             self.room = self.room.exits[direction]
-            return colored(f"You moved {direction.upper()} to the {self.room.name}", 'yellow')
+            result['message'] = f"You moved {direction.upper()} to the {self.room.name}"
+            result['success'] = True
         else:
-            return colored(f"There is no exit in the {direction.upper()} direction!", 'yellow')
+            result['message'] = f"There is no exit in the {direction.upper()} direction!"
+            result['success'] = False
+        return result
 
     def pickup_item(self, item):
         self.inventory.append(item)
