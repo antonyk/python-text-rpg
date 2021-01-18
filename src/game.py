@@ -5,6 +5,8 @@ from termcolor import colored
 from world import World
 from player import Player
 from content import rooms
+from content import creatures
+from utils import print_error
 
 
 #
@@ -68,11 +70,11 @@ def clear_screen():
 
 def main():
     # create world
-    gameworld = World(rooms=rooms, default_room='outside')
+    gameworld = World(rooms=rooms, default_room='outside', creatures=creatures)
 
     prompt = ""
     # get player name and create players
-    p_name = input(f"Please enter you character's name:")
+    p_name = input(f"Please enter you character's name: ")
     player = Player(p_name, gameworld.spawn_room)
 
     print(f"Welcome to the Game, adventurer {player}!\n\n")
@@ -94,11 +96,16 @@ def main():
             render_help()
 
         elif choice in movement_commands:
-            clear_screen()
             # perform a move
-            print(player.move(choice))
-            # render the new room
-            print(player.render_environment())
+            result = player.move(choice)
+            if result['success']:
+                clear_screen()
+                print(colored(f"> {result['message']}", 'yellow'))
+                # render the new room
+                print(player.render_environment())
+            else:
+                print(colored(result['message'], 'red'))
+
 
         elif choice[0] == 'g':
             parts = choice.split(' ', 1)

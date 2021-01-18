@@ -3,9 +3,17 @@ from room import Room
 from item import Item
 
 
+class Creature:
+    def __init__(self, name, props, aggro):
+        # init properties
+        self.name = name
+        self.hp = props['hp']
+        self.description = props['description']
+        self.aggro = aggro
+
 class World:
     # this constructor takes a world definition file
-    def __init__(self, rooms, default_room, use_void=True):
+    def __init__(self, rooms, default_room, creatures, use_void=True):
         # init properties
         self.rooms = {}
 
@@ -28,6 +36,11 @@ class World:
             for i in r['items']:
                 item = Item(i[0], i[2])
                 room.add_object(item)
+
+            for n in r['npc']:
+                cname = n[0]
+                npc = Creature(cname, creatures[cname], n[1])
+
 
         self.default_room = self.rooms.get(default_room)
         self.spawn_room = self.default_room
@@ -56,23 +69,23 @@ class World:
 
     # generate a random world
 
-    # def genworld():
+    def genworld():
 
-    #     choices = len(content)
-    #     size = 100
+        choices = len(content)
+        size = 100
 
-    #     for i in range(1, size):
-    #         rand = random.Random()
-    #         fromCont = rand.choice(content)
+        for i in range(1, size):
+            rand = random.Random()
+            fromCont = rand.choice(content)
 
-    #         newRoom = Room(fromRoom.name, fromRoom.description)
-    #         exitsCnt = range
-    #         # newRoom.
-    #         # world[str(i)] = 
+            newRoom = Room(fromRoom.name, fromRoom.description)
+            exitsCnt = range
+            # newRoom.
+            # world[str(i)] =
 
-    #     world = {
+        world = {
 
-    #     }
+        }
 
 
 # Declare all the rooms

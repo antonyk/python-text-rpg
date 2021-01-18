@@ -2,7 +2,7 @@
 
 # room_desc
 
-enemies = {
+creatures = {
     'urukhai': {
         'short': 'Urukhai',
         'description': 'Large, ugly, orc-like creature',

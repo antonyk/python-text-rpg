@@ -16,6 +16,7 @@ class Room:
         self.exits = {}
         self.characters = {}
         self.objects = []
+        self.npc = []
         self.visibility = 5
 
     def __str__(self):
@@ -27,6 +28,12 @@ class Room:
     def add_object(self, obj):
         self.objects.append(obj)
 
+    def add_npc(self, obj):
+        self.npc.append(obj)
+
+    def remove_npc(self, obj):
+        self.npc.remove(obj)
+
     def remove_object(self, obj):
         self.objects.remove(obj)
 
@@ -34,12 +41,18 @@ class Room:
         output = colored('[ ' + self.name + ' ]', 'white')+'\n'
         output += colored(textwrap.fill(self.description,
                                         width), 'magenta') + '\n\n'
+
+        if len(self.npc) > 0:
+            for npc in self.npc:
+                output += '\n' + colored(f"An {npc} is standing here. It {'is about to attack' : 'seems peaceful'}\n", 'magenta')
+
         if len(self.objects) > 0:
-            output += colored('You see:', 'cyan') + '\n'
+            output += colored('You see:', 'blue') + '\n'
             output += '\n'.join([colored(item.name, 'green')
                                  for item in self.objects]) + '\n\n'
         else:
             output += colored("There is nothing in this room!", 'blue') + '\n'
+
         return output
 
         # dirs = ", ".join([key.upper() for key in self.exits])
