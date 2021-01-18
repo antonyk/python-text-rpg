@@ -2,12 +2,16 @@ import os
 import textwrap
 from termcolor import colored
 
+
 from world import World
-from player import Player
+# from player import Player
 from content import rooms
 from content import creatures
 from utils import print_error
 
+# Test importer module
+import importer
+Player = importer.import_('player', 'player.py', '.').Player
 
 #
 # Main
