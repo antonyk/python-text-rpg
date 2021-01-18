@@ -5,6 +5,7 @@ from termcolor import colored
 from world import World
 from player import Player
 from content import rooms
+from content import creatures
 from utils import print_error
 
 
@@ -69,7 +70,7 @@ def clear_screen():
 
 def main():
     # create world
-    gameworld = World(rooms=rooms, default_room='outside')
+    gameworld = World(rooms=rooms, default_room='outside', creatures=creatures)
 
     prompt = ""
     # get player name and create players
