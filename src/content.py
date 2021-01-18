@@ -2,6 +2,14 @@
 
 # room_desc
 
+enemies = {
+    'urukhai': {
+        'short': 'Urukhai',
+        'description': 'Large, ugly, orc-like creature',
+        'hp': 50,
+    }
+}
+
 rooms = [
     {
         'uid': 'outside',
@@ -13,6 +21,8 @@ rooms = [
         'items': [
             ('torch', 'torch', 'a basic torch to light the way'),
             ('training sword', 'sword', 'a dull training sword made of wood'),
+        ],
+        'npc': [
         ]
     },
     {
@@ -26,6 +36,8 @@ passages run north and east.""",
             ('s', 'outside')
         ],
         'items': [
+        ],
+        'npc': [
         ]
     },
     {
@@ -38,6 +50,8 @@ the distance, but there is no way across the chasm.""",
             ('s', 'foyer')
         ],
         'items': [
+        ],
+        'npc': [
         ]
     },
     {
@@ -50,6 +64,8 @@ to north. The smell of gold permeates the air.""",
             ('w', 'foyer')
         ],
         'items': [
+        ],
+        'npc': [
         ]
     },
     {
@@ -62,6 +78,9 @@ to north. The smell of gold permeates the air.""",
             ('s', 'narrow')
         ],
         'items': [
+        ],
+        'npc': [
+            ('urukhai', True)
         ]
     },
     {
@@ -75,6 +94,8 @@ earlier adventurers. The only exit is to the south.""",
         ],
         'items': [
             ('dragon egg', 'egg', 'a precious dragon egg which may hatch a dragon pet'),
+        ],
+        'npc': [
         ]
     },
 
